@@ -1,0 +1,59 @@
+<section id="home"
+  class="py-32 px-6 md:px-20 bg-gradient-to-b from-[#12001f] to-black text-white
+        ">
+
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-20">
+<!-- IMAGE FRAME -->
+<div class="group relative w-[300px] h-[420px] rounded-[26px] p-[3px]
+            bg-gradient-to-br from-purple-500 to-indigo-500
+            shadow-[0_0_30px_rgba(168,85,247,0.6),0_0_80px_rgba(99,102,241,0.3)]
+            transition-transform duration-500 ease-out
+            [perspective:1200px]
+            hover:[transform:rotateY(-6deg)_rotateX(3deg)_scale(1.02)] overflow-hidden">
+
+  <!-- Glass inner -->
+  <div class="absolute inset-[3px] rounded-[22px] bg-black/90 z-10"></div>
+
+  <!-- Portrait crop container -->
+  <div class="relative z-20 w-full h-full rounded-[22px] overflow-hidden">
+
+    <img
+      src="/ansh_back.png"
+      alt="Ansh Vashisht"
+      class="w-full h-full object-cover
+
+             /* PERFECT FACE FRAMING */
+             object-position: 50% 12%
+
+             /* NATURAL ZOOM (NO DISTORTION) */
+             scale-[1.25]
+
+             /* STUDIO DEPTH */
+             drop-shadow-[0_0_30px_rgba(168,85,247,0.7)]
+
+             transition-transform duration-500 ease-out
+             group-hover:scale-[1.32]"
+    />
+
+    <!-- CINEMATIC BOTTOM FADE (HIDES LEGS COMPLETELY) -->
+    <div class="absolute bottom-0 left-0 w-full h-[45%]
+                bg-gradient-to-t from-black via-black/80 to-transparent">
+    </div>
+
+  </div>
+</div>
+
+
+    <!-- TEXT -->
+    <div class="max-w-xl text-center md:text-left">
+      <h2 class="text-4xl font-bold mb-6">About Me</h2>
+      <p class="text-lg leading-relaxed text-gray-300">
+        I am a final-year Computer Science student driven by a passion for building impactful digital products.
+        With strong hands-on experience in full-stack development, I focus on creating scalable, user-centric
+        applications using modern technologies such as the MEAN and MERN stacks. I enjoy solving real-world
+        problems through clean architecture and efficient code.
+      </p>
+    </div>
+
+  </div>
+</section>

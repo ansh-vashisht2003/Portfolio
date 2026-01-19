@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit Skills - Responsive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* --- PHYSICS ENGINE --- */
+        
+        /* 1. The Ring Structure */
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(var(--radius) * 2);
+            height: calc(var(--radius) * 2);
+            border-radius: 50%;
+            animation: orbitSpin var(--duration) linear infinite;
+            pointer-events: none;
+        }
+
+        /* 2. Positioning Items on the Ring */
+        .orbit-item {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            /* Rotate to angle, then push out by radius */
+            --angle: calc(360deg / var(--count) * var(--i));
+            transform: rotate(var(--angle)) translateX(var(--radius));
+            pointer-events: auto;
+        }
+
+        /* 3. Gyroscope (Counter-rotate container so icon stands up) */
+        .gyro-fix {
+            transform: rotate(calc(-1 * var(--angle)));
+        }
+
+        /* 4. Dynamic Counter-Spin (Keeps icon upright while orbit spins) */
+        .counter-rotate {
+            animation: counterSpin var(--duration) linear infinite;
+        }
+
+        /* Reverse Orbits */
+        .orbit-ring.reverse { animation-direction: reverse; }
+        .orbit-ring.reverse .counter-rotate { animation: counterSpinReverse var(--duration) linear infinite; }
+
+        /* KEYFRAMES */
+        @keyframes orbitSpin {
+            0%   { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes counterSpin {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+        @keyframes counterSpinReverse {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans overflow-x-hidden">
+
+<section class="min-h-screen flex flex-col items-center justify-center bg-[radial-gradient(circle_at_center,_#130026_0%,_#000000_85%)] overflow-hidden relative py-10 px-4">
+
+  <div class="z-10 text-center mb-8 md:mb-12">
+    <h2 class="relative text-4xl md:text-5xl font-extrabold mb-2 leading-tight pb-2">
+      <span class="absolute inset-0 text-transparent bg-clip-text 
+                   bg-gradient-to-r from-purple-200 to-purple-600 
+                   blur-md opacity-40 select-none pointer-events-none">
+        My Tech Stack
+      </span>
+      <span class="relative text-transparent bg-clip-text 
+                   bg-gradient-to-r from-purple-200 to-purple-600">
+        My Tech Stack
+      </span>
+    </h2>
+    <p class="text-slate-400 text-base md:text-lg">
+      Core technologies & tools
+    </p>
+  </div>
+
+  <div class="relative w-full max-w-[500px] h-[500px] md:max-w-[600px] md:h-[600px] lg:max-w-[700px] lg:h-[700px] group
+              transition-transform duration-500 ease-out 
+              scale-[0.65] xs:scale-[0.85] md:scale-100">
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                    w-24 h-24 md:w-28 md:h-28 rounded-full bg-[#0b0014] border-3 border-purple-600 
+                    shadow-[0_0_40px_rgba(168,85,247,0.7)] flex items-center justify-center z-20">
+            <img src="/emoji.png" alt="Ansh" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded-full" />
+        </div>
+
+        <div class="orbit-ring group-hover:[animation-play-state:paused]" 
+             style="--duration: 18s; 
+                    --radius: clamp(70px, 15vw, 130px); 
+                    --count: 3;">
+             
+             <div class="orbit-item" style="--i:0">
+                 <div class="gyro-fix">
+                     <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                 bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)]
+                                 transition-all duration-300 group-hover:[animation-play-state:paused]
+                                 hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                     </div>
+                 </div>
+             </div>
+             <div class="orbit-item" style="--i:1">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-6 h-6 md:w-8 md:h-8">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:2">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbit-ring reverse group-hover:[animation-play-state:paused]" 
+             style="--duration: 28s; 
+                    --radius: clamp(120px, 25vw, 220px); 
+                    --count: 4;">
+             
+             <div class="orbit-item" style="--i:0">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:1">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:2">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:3">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" class="w-5 h-5 md:w-7 md:h-7 invert">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="orbit-ring group-hover:[animation-play-state:paused]" 
+             style="--duration: 45s; 
+                    --radius: clamp(175px, 35vw, 320px); 
+                    --count: 8;">
+             
+             <div class="orbit-item" style="--i:0">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:1">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:2">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:3">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:4">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:5">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:6">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+            <div class="orbit-item" style="--i:7">
+                <div class="gyro-fix">
+                    <div class="counter-rotate w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center 
+                                bg-white/5 border border-purple-500/35 backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.25)] 
+                                transition-all duration-300 group-hover:[animation-play-state:paused] 
+                                hover:scale-125 hover:bg-purple-900/80 hover:border-purple-300 hover:shadow-[0_0_25px_#a855f7] hover:z-50 cursor-pointer">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-5 h-5 md:w-7 md:h-7">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* ================================
+   PREMIUM PORTFOLIO FOOTER
+================================ */
+
+.site-footer {
+  margin-top: 120px;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft top glow line */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 60%;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(168, 85, 247, 0.6),
+    rgba(139, 92, 246, 0.6),
+    transparent
+  );
+}
+
+/* Footer text layout */
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  font-size: 0.9rem;
+  color: #c7c3d6;
+  letter-spacing: 0.3px;
+}
+
+/* Neon accent on keywords */
+.footer-content span {
+  position: relative;
+  padding: 4px 10px;
+}
+
+.footer-content span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: radial-gradient(
+    circle,
+    rgba(168, 85, 247, 0.15),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footer-content span:hover::after {
+  opacity: 1;
+}
+
+/* Subtle glow on hover */
+.footer-content span:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(168, 85, 247, 0.6),
+    0 0 16px rgba(139, 92, 246, 0.4);
+}

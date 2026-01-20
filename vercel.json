@@ -1,6 +1,7 @@
 {
-  "outputDirectory": "dist/my-project",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/my-project/browser",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

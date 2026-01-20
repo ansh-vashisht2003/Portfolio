@@ -1,4 +1,5 @@
 {
+  "outputDirectory": "dist/my-project",
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]

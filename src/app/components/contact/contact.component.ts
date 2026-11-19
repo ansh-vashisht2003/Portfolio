@@ -35,7 +35,7 @@ export class ContactComponent implements OnInit {
     };
 
     emailjs.send(
-      'service_z4z7yap',
+      'service_dd03uje',
       'template_2ennxr9',
       templateParams
     ).then(() => {
